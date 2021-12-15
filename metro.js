@@ -1,22 +1,22 @@
-/*Sew Queen Whatsapp Bot    
+/*Metro Bot Whatsapp Bot    
 
 Licensed under the  GPL-3.0 License;
 Coded By Adeesa Indumina
 */
-let DataPack = require('Metro-dens-pro/export/output');
-let Metrodens = require('Metro-dens-pro/sources/dc/handler');
-let Details = require('Metro-dens-pro/sources/dc/Details');
+let DataPack = require('metro-bot-pro/export/output');
+let Metrodens = require('metro-bot-pro/sources/dc/handler');
+let Details = require('metro-bot-pro/sources/dc/Details');
 let GBLACK =require('blocked-s/grp')
-let SOL =require('Metro-dens-pro/console')
+let SOL =require('metro-bot-pro/console')
 let {CheckUpdatesWeb, sendMessageownerMSG, sendMessageADSMSG, sendMessageBotOn, sendMessageGreetingMSG, sendMessageMSGMSG, sendMessageBlackListMSG, sendMessageBIOMSG} = require('Metro-dens-pro/sources/dc/sew')
 let fs = require('fs'); let os = require('os'); let got = require('got'); let path = require("path"); let chalk = require('chalk');
 let SQQA = require('./SQ-QA')
 let {WAConnection, MessageOptions, MessageType, Mimetype, Presence} = require('@ravindu01manoj/Metro-dens-web');  
-let {Message, StringSession, Image, Video} =  require('Metro-dens-pro/sources/dc/Wa-Base/');
+let {Message, StringSession, Image, Video} =  require('metro-bot-pro/sources/dc/Wa-Base/');
 let { DataTypes } = require('sequelize'); let { getMessage } = require("./DataBase/greetings");
 let Heroku = require('heroku-client'); let simpleGit = require('simple-git'); let git = simpleGit();
 let heroku = new Heroku({ token: Details.HEROKU.API_KEY}); let baseURI = '/apps/' + Details.HEROKU.APP_NAME;
-let SewQueenDB = Details.DATABASE.define('Metrodens', {
+let SewQueenDB = Details.DATABASE.define('metrobot', {
         info: {
                 type: DataTypes.STRING,
                 allowNull: false
@@ -119,10 +119,10 @@ async function metrodens() {
                 let msg = m.messages.all()[0];
                 if (Details.NO_ONLINE) { await DataKey.updatePresence(msg.key.remoteJid, Presence.unavailable)}
                 await sendMessageGreetingMSG(DataKey, getMessage, msg)
-                if (GBLACK.ALL_GROUP !== 'raviya') {     
+                if (GBLACK.ALL_GROUP !== 'metrodens') {     
                 var grp = GBLACK.ALL_GROUP + ',' + Details.BLOCKCHAT;var sup = grp.split(',')
                 if(msg.key.remoteJid.includes('g.us') ? sup.includes(msg.key.remoteJid.split('@')[0]) : sup.includes(msg.participant ? msg.participant.split('@')[0] : msg.key.remoteJid.split('@')[0])) return}
-                await sendMessageMSGMSG(DataKey, msg, 'sew', SQQA)
+                await sendMessageMSGMSG(DataKey, msg, 'metro', SQQA)
                 });
         try {
         await DataKey.connect();
@@ -133,4 +133,4 @@ async function metrodens() {
                                 await DataKey.connect();
                         } catch {
                                 return;}}}};
-    Metrodens()
+    metroBot()
