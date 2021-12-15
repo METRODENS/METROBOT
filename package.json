@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "ejs": "2.4.1" 
-  }, //this is line 14 
+  }, 
   "repository": {
     "type": "git",
     "url": "https://git.heroku.com/sebasaenz.git"
